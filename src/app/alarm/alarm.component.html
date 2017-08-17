@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="row" style="background-color: #4885ed;">
+        <div class="col-md-11 col-sm-6 col-xs-9">
+            <h4>{{title}}</h4>
+        </div>
+        <div class="col-md-1 col-sm-6 col-xs-3">
+            <button class="btn btn-default customButton" (click)="showAlarmDetails(null,'add')">New</button>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px;">
+
+        <div *ngFor="let alarm of alarmModel">
+
+            <div class="col-sm-6 col-md-2">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <button type="button" class="close pull-right" (click)="deleteAlarm(alarm)" aria-label="Close">
+                        <span aria-hidden="true" style = "color:#111">&times;</span>
+                        </button>
+                        <h5>{{alarm.title}}</h5>
+                        <p>{{alarm.displayTime}}</p>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <button class="btn btn-primary" (click)="showAlarmDetails(alarm,'edit')">Edit</button>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="material-switch" style="margin-left: 50%;">
+                                    <input id="checkActive+{{alarm.id}}" [(ngModel)]="alarm.status" name="checkActive+{{alarm.id}}" type="checkbox" />
+                                    <label for="checkActive+{{alarm.id}}" class="label-success"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div bsModal #informationModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="informationModal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#34495e">
+                    <h4 class="modal-title pull-left" style="color:#ecf0f1">Alarm Information</h4>
+                    <button type="button" class="close pull-right" (click)="windowCloseFun()" aria-label="Close">
+                        <span aria-hidden="true" style = "color:#fff">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Alarm Name" aria-describedby="basic-addon1" [(ngModel)]="alarmName">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="col-md-6 col-xs-6">
+                                <h5>Active</h5>
+                            </div>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="material-switch">
+                                    <input id="checkActive" [(ngModel)]="status" name="checkActive" type="checkbox" />
+                                    <label for="checkActive" class="label-success"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="col-md-6 col-xs-6">
+                                <h5>Repeat</h5>
+                            </div>
+                            <div class="col-md-3 col-xs-6">
+                                <div class="material-switch">
+                                    <input id="checkRepeat" [(ngModel)]="repeat" name="checkRepeat" type="checkbox" />
+                                    <label for="checkRepeat" class="label-success"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style = "margin-top:20px;" >
+                        <div class="col-md-4 col-md-offset-4 col-xs-offset-2 col-xs-offset-10">
+                            <timepicker [(ngModel)]="time" required></timepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-4" style="margin-left: -18%;">
+                            <button class="btn btn-primary" (click)="addAlarm()">Done</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div bsModal #alarmModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="alarmModal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#34495e">
+                    <h4 class="modal-title pull-left" style="color:#ecf0f1">Alarm Toast</h4>
+                    <button type="button" class="close pull-right" (click)="closeAlarm()" aria-label="Close">
+                        <span aria-hidden="true" style = "color:#fff">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class = "col-md-4 col-md-offset-5">
+                            <span class = "glyphicon glyphicon-phone-alt" style = "font-size: 40px;" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
