@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="material-switch" style="margin-left: 50%;">
-                                    <input id="checkActive+{{alarm.id}}" [(ngModel)]="alarm.status" name="checkActive+{{alarm.id}}" type="checkbox" />
+                                    <input id="checkActive+{{alarm.id}}" [(ngModel)]="alarm.status" name="checkActive+{{alarm.id}}" type="checkbox" (change)="modifyAlarm(alarm)" />
                                     <label for="checkActive+{{alarm.id}}" class="label-success"></label>
                                 </div>
                             </div>

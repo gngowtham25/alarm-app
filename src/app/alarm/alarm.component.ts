@@ -195,5 +195,13 @@ export class AlarmComponent implements OnInit,AfterViewInit {
     this.deleteModal.hide();
     this.alarmIndex = null;
   }
+  modifyAlarm(alarmStatus : AlarmModel){
+     this.alarmModel.filter((eachAlarm) => {
+        if (eachAlarm.id == alarmStatus.id) {
+          eachAlarm.status = alarmStatus.status;
+        }
+      })
+      localStorage.setItem("alarm", JSON.stringify(this.alarmModel));
+  }
 }
 
